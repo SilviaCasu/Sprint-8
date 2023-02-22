@@ -1,6 +1,16 @@
+<script >
+import cabecera from '@/components/Cabecera.vue'
+
+export default {
+  name: 'bienvenida',
+  components: {
+    cabecera}
+ }
+</script>
+
 <template>
   <div id="bienvenida" class="container justify-content-center">
- <div><menuCabecera/></div>
+ <div><cabecera/></div>
    
     <h1>   Welcome to STARWARS </h1>
   <br>
@@ -11,20 +21,12 @@
     </div> 
   </template>
 
-<script>
-import menuCabecera from '@/components/MenuCabecera.vue'
 
-export default {
-  name: 'bienvenida',
-  components: {
-    menuCabecera}
- }
-</script>
 
 <style>
 
 body {
-   background-color:#0f0f0f;
+   background-color:#212529;
    text-align: left;
    color: rgb(204, 191, 75);
 }

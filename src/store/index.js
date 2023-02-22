@@ -2,7 +2,10 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    starships :[]
+    starships :[],
+    pilot :[],
+    name:'',
+ 
   },
   getters: {
   },
@@ -10,16 +13,32 @@ export default createStore({
 
     listShips (state, shipsAction){
       state.starships = shipsAction
+      
     },
+    listPilot (state, pilotAction){
+      state.pilot = pilotAction
+      
+    },
+    
+    
    
   },
   actions: {
 
-    getShips : async function({commit}) {
-      const datos = await fetch ( 'https://swapi.dev/api/starships/?result=7' );
-      const starships = await datos.json();
-     
-      commit('listShips', starships)
+   getShips : async function({commit}, page) {
+   
+   
+      const datos = await fetch ( 'https://swapi.dev/api/starships/?result=7&page='+ page );
+      const starships = await datos.json(); 
+      commit('listShips', starships,)
+      
+    },
+
+    getPilot : async function({commit}, urlPilot) {     
+      const datos = await fetch ( urlPilot );
+      const pilot = await datos.json(); 
+  console.log(pilot.name);
+     commit('listPilot', pilot)      
     }
   },
   modules: {
