@@ -5,7 +5,9 @@ export default createStore({
     starships :[],
     pilot :[],
     name:'',
- 
+ foto: '',
+ url: '',
+ loggedIn: false,
   },
   getters: {
   },
@@ -19,6 +21,15 @@ export default createStore({
       state.pilot = pilotAction
       
     },
+    listfoto (state,  urls){
+      state.url = urls
+      
+    },
+    loggedIn (state){
+      state.loggedIn = true
+    }
+
+
     
     
    
@@ -26,8 +37,7 @@ export default createStore({
   actions: {
 
    getShips : async function({commit}, page) {
-   
-   
+ 
       const datos = await fetch ( 'https://swapi.dev/api/starships/?result=7&page='+ page );
       const starships = await datos.json(); 
       commit('listShips', starships,)
@@ -37,10 +47,16 @@ export default createStore({
     getPilot : async function({commit}, urlPilot) {     
       const datos = await fetch ( urlPilot );
       const pilot = await datos.json(); 
-  console.log(pilot.name);
+      console.log(pilot.name);
      commit('listPilot', pilot)      
+    },
+  
+    mockLogin(context){
+    
+  context.commit('loggedIn');
     }
   },
+  
   modules: {
   }
 })

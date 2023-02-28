@@ -2,7 +2,7 @@
     
 <div>
     <div><cabecera/></div>
-<div class="container-fluid  bg-dark text-warning">
+<div class="container-fluid  text-warning mt-5">
   <div class="row align-items-start ">
     <div class="col-4">
       
@@ -39,6 +39,9 @@
 </template>
 
 <script>
+import store from '../store'
+import { mapActions,  } from 'vuex'
+
 import cabecera from '@/components/Cabecera.vue'
 export default {
   name: 'login',
@@ -54,23 +57,27 @@ export default {
     }
   },
   methods :{
+    ...mapActions(['mockLogin']),
+
   handleSubmit (){
         const data = {
         email : this.email,
         password : this.password,
         }
+            // console.log (data);
+        if (this.email == localStorage.email && this.password == localStorage.password) {
         
-       // console.log (data);
-
-        if (this.email==localStorage.email && this.password==localStorage.password) {
-        console.log ("ok"); console.log('Hello' + localStorage.username) ;
+         this.mockLogin();
+        
+        console.log ("ok"); console.log('Hello' +  localStorage.username); alert ('Hello' + localStorage.username +' now you can access the starships page') ;
     } else {
       alert("User not found");
     }
 
 
 
-    }
+    },
+   
   },
   
 }

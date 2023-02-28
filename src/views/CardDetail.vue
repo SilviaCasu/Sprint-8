@@ -12,17 +12,49 @@ components: {
 cardPilots,
    
 },
+data() {
+      return {
+        exist:""
+      }
+    },
 computed: {
-    ...mapState(['starships','pilot'])
+    ...mapState(['starships','pilot', 'foto', 'url'])
 },
 methods: {
-    ...mapActions(['getShips','getPilot']),
+    ...mapActions(['getShips','getPilot', 'getId']),
     
+    getId(url) {
+     
+      const thenum = url.replace(/\D/g, "");
+      const theUrl="https://starwars-visualguide.com/assets/img/starships/"+thenum+".jpg";
+      let exist="";
+
+      const img = new Image()
+      img.onload = () => {
+        this.exist = true
+      }
+      img.onerror = () => {
+        this.exist = false
+       
+      }
+      img.src = theUrl;
+    
+if(this.exist) {
+    return theUrl
+} else {
+  return "https://starwars-visualguide.com/assets/img/placeholder.jpg"
+}
+     },
+
+
+   
 
    
 }
 
 }
+
+
 </script>
 
 
@@ -36,13 +68,14 @@ methods: {
     <div class ="col-11">
       <div class="card_detail ">
       <div class="container justify-content-center bg-dark">
-      <div class="card bg-white   " style="max-width: 90%;">
+      <div class="card bg-dark   " style="max-width: 90%;">
       <div class="row g-0">
-        <div class="col-md-4">
-          <img src="https://starwars-visualguide.com/assets/img/starships/5.jpg" class="img-fluid rounded-start" alt="...">
+        <div class="col-md-4 m-5 ">
+     
+          <img :src="getId(starships.results[$route.params.id].url)" class="img-fluid rounded-start" alt="...">
         </div>
         <div class="col-md-4">
-          <div class="card-body text-dark">
+          <div class="card-body text-light justify-content-right">
             <h5 class="card-title"> Name: {{starships.results[$route.params.id].name}} </h5>
                 <div class="card-text"><small class="text-muted"> Model: {{starships.results[$route.params.id].model}} </small></div>  
                 <div class="card-text"><small class="text-muted">Manufacturer : {{starships.results[$route.params.id].manufacturer}} </small></div> 
@@ -56,8 +89,8 @@ methods: {
                 <div class="card-text"><small class="text-muted"> Hyperdrive rating:   {{starships.results[$route.params.id].hyperdrive_rating}} </small></div>
                 <div class="card-text"><small class="text-muted"> MGLT:   {{starships.results[$route.params.id].MGLT}} </small></div>
                 <div class="card-text"><small class="text-muted"> Consumables:   {{starships.results[$route.params.id].consumables}} </small></div>
- <div> 
-       </div>
+  <div class="card-text"><small class="text-muted"> foto:   {{starships.results[$route.params.id].url}} </small></div>
+       </div><div> 
         </div>  </div>
      </div>
      </div>

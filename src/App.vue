@@ -1,7 +1,7 @@
 <template>
   <div id="app" >
-    <body class="bg-dark h">
-   <div class="container-fluid justify-content-center bg-dark"></div>
+    <body class="bg-black">
+   <div class="container fluid justify-content-center "></div>
  
   
   <router-view/>
@@ -23,16 +23,34 @@ export default {
 </script>
 <style>
 body {
-   background-color:#212529;
+   background-color:#000000;
    text-align: left;
-   color: rgb(204, 191, 75);
+   color: white;
 }
-.router-link-active{
-  color: rgb(218, 182, 25)
+
+.link-active{
+  color: white;
+  font-size:smaller;
+  font-weight: bold;
 }
-.router-link{
-  color: rgb(207, 88, 19)
+
+
+.link:link{  color:  white;
+  font-size:smaller;
+  font-weight: bold;
+  
+
 }
+
+.link:visited{  color: white;
+  font-size:smaller;
+  font-weight: bold;
+
+}
+.link:hover{  color:  white;
+  font-size:smaller;
+  font-weight: bold;
+  }
 </style>
 
 

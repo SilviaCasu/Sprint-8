@@ -1,6 +1,6 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
-
+import store from '../store'
 
 const routes = [
   {
@@ -11,7 +11,8 @@ const routes = [
   {
     path: '/starShips',
     name: 'starShips',
-    component: () => import(/* webpackChunkName: "StarShips" */ '../views/StarShips.vue')
+    component: () => import(/* webpackChunkName: "StarShips" */ '../views/StarShips.vue'),
+    meta: { requireAuth: true },
   },
   {
     path: '/cabecera',
@@ -61,6 +62,20 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+router.beforeEach (( to, before, next) => {
+  if(to.matched.some (router => router.meta.requireAuth)){
+   
+    if(!store.state.loggedIn){
+      alert( 'You must login to access this page' )
+      next('/Login')
+     
+    } else{
+      next()
+    } 
+  } else {
+    next()
+  }
 })
 
 export default router

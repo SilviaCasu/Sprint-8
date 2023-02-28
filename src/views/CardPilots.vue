@@ -47,7 +47,7 @@ methods: {
   <div  v-for="(urlPilot, index) of starships.results[$route.params.id].pilots" :key="index">
   <p class="card-text">{{getPilot(urlPilot)}}  </p> 
    
-    </div> {{ pilot }}
+    </div>
    
     </h5>
 

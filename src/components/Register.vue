@@ -2,7 +2,7 @@
     
 <div>
     <div><cabecera/></div>
-<div class="container-fluid  bg-dark text-warning">
+<div class="container-fluid text-warning mt-5">
   <div class="row align-items-start ">
     <div class="col-4">
       

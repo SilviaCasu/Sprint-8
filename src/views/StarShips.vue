@@ -1,11 +1,14 @@
 <template>
   
-<div class="container justify-content-center bg-dark">
+<div  id="container" class="container-fluid justify-content-center">
   <div><cabecera/></div>
-  
-    <div class="list-group bg-dark">
-      <h1>STARSHIPS</h1>
-    <button @click="getShips(1), showNav()"  class= "btn p-2 mb-2 text-warning bg-dark">Get Ships</button>
+  <div class="row">
+    <div class="col  m-5 ">
+    <div class="list-group ">
+      <h3>Starships</h3>
+      <div class="h4 pb-2 mb-4  border-bottom border-secondary"></div>
+      <h5>Here you can see all the starwars ships</h5>
+    <button @click="getShips(1), showNav()"  class= "btn p-2 mb-2 text-white">Get Ships</button>
 
 
   
@@ -15,10 +18,11 @@
     <button class= "btn p-2 mb-3  text-light bg-dark"> SHIP: {{ starship.name }} MODEL: {{ starship.model }}</button>
     </router-link>  
      </div>
+     </div>
   </div>
+</div>
 
-
-<div class="container  justify-content-center bg-dark">
+<div class="container  justify-content-center ">
 <nav aria-label="Page navigation ">
   <ul  v-show ="setDefaultNav"  class="pagination" id="pagination">
     <li  v-if=" this.TotPages >= 2"  class="page-item"><a class="page-link" @click=" changePage('prev')">Previous</a></li>
@@ -96,14 +100,24 @@ export default {
 <style>
 
 body {
-   background-color:#212529;
-   text-align: left;
-   color: rgb(204, 191, 75);
+   background-color:black;
+    color: rgba(255, 255, 255, 0.925);
 }
 .router-link-active{
   color: rgb(218, 182, 25)
 }
 .router-link{
-  color: rgb(207, 88, 19)
+  color: white
+}
+h5{
+  text-align: center;
+}
+
+#container {
+ background-color:black;
+ color: white;
+min-height: 100%;
+min-width: 100%;
+
 }
 </style>
